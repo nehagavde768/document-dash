@@ -1,0 +1,62 @@
+.exit-confirm-box {
+  width: 100%;
+  max-width: 480px;
+  background: var(--white);
+  color: var(--ink-950);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 25px 80px rgba(var(--black-rgb), 0.5);
+  text-align: center;
+}
+
+.exit-confirm-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: var(--fw-heavy);
+}
+
+.exit-confirm-text {
+  margin-top: var(--space-3);
+  font-size: var(--text-md);
+  font-weight: var(--fw-semibold);
+  color: var(--ink-600);
+}
+
+.exit-confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.exit-confirm-stay,
+.exit-confirm-leave {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 52px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-3xl);
+  font: inherit;
+  font-size: var(--text-base);
+  font-weight: var(--fw-heavy);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Staying is the safe choice, so it's the prominent one */
+.exit-confirm-stay {
+  background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+  color: var(--white);
+  border: none;
+  box-shadow: 0 8px 25px rgba(var(--blue-500-rgb), 0.35);
+}
+
+.exit-confirm-leave {
+  background: var(--ink-100);
+  color: var(--ink-900);
+  border: 2px solid var(--ink-300);
+}
