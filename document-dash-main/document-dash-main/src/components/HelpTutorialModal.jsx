@@ -1,0 +1,84 @@
+import React from 'react';
+import { ClipboardList, Lightbulb } from 'lucide-react';
+import { CERTIFICATES, mandatoryRequirements } from '../data/certificates';
+import Icon from './Icon';
+import './HelpTutorialModal.css';
+
+export default function HelpTutorialModal({ lang = 'en', onClose }) {
+  const isEn = lang === 'en';
+
+  return (
+    <div className="modal-overlay active" role="dialog" aria-modal="true">
+      <div className="cert-showcase-box help-guide-box">
+        <div className="cert-header">
+          <h2 className="cert-gov-title">
+            <Icon as={ClipboardList} /> {isEn ? 'Certificate Document Guide' : 'प्रमाण पत्र दस्तावेज़ मार्गदर्शिका'}
+          </h2>
+          <div className="cert-gov-sub">
+            {isEn
+              ? 'The documents each certificate needs'
+              : 'हर प्रमाण पत्र के लिए आवश्यक दस्तावेज़'}
+          </div>
+        </div>
+
+        <div className="help-guide-body">
+          <p className="help-guide-intro">
+            {isEn
+              ? `In Document Dash, you learn which documents belong to each of the ${CERTIFICATES.length} statutory certificates in Chhattisgarh:`
+              : 'डॉक्यूमेंट डैश में आप सीखते हैं कि छत्तीसगढ़ के इन प्रमुख प्रमाण पत्रों के लिए कौन-से दस्तावेज़ अनिवार्य हैं:'}
+          </p>
+
+          <div className="help-cert-grid">
+            {CERTIFICATES.map(c => (
+              <div key={c.id} className="help-cert-card" style={{ '--cert-color': c.color }}>
+                <div className="help-cert-title">
+                  <span className="help-cert-icon"><Icon as={c.icon} /></span>
+                  <span>{isEn ? c.name_en : c.name_hi}</span>
+                </div>
+                <div className="help-cert-sub">
+                  {isEn ? c.subtitle_en : c.subtitle_hi}
+                </div>
+                <div className="help-cert-count">
+                  {isEn
+                    ? `${mandatoryRequirements(c).length} Mandatory Document Types`
+                    : `${mandatoryRequirements(c).length} अनिवार्य दस्तावेज़ प्रकार`}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="help-tips">
+            <strong><Icon as={Lightbulb} /> {isEn ? 'Pro Citizen Tips:' : 'नागरिक सुझाव:'}</strong>
+            <ul>
+              <li>
+                {isEn
+                  ? 'Stuck? Hover over or tap a certificate basket to see the documents it needs.'
+                  : 'अटक गए? किसी प्रमाण पत्र बास्केट पर होवर या टैप करें और आवश्यक दस्तावेज़ देखें।'}
+              </li>
+              <li>
+                {isEn
+                  ? 'One supporting document per type is enough: any one of the ancestors\' records (Misal, Jamabandi, Census 1931…) completes that type.'
+                  : 'हर दस्तावेज़ प्रकार के लिए एक सहायक दस्तावेज़ पर्याप्त है: पूर्वजों का कोई भी एक अभिलेख (मिसल, जमाबंदी, जनगणना 1931…) वह प्रकार पूरा करता है।'}
+              </li>
+              <li>
+                {isEn
+                  ? 'Multi-purpose proofs: the Affidavit counts for Income, both caste certificates and Marriage, and the Application Form, Patwari Report and Family Tree count for both caste certificates.'
+                  : 'बहु-उद्देशीय दस्तावेज़: शपथ पत्र आय, दोनों जाति प्रमाण पत्रों और विवाह के लिए है, और आवेदन पत्र, पटवारी प्रतिवेदन तथा वंश वृक्ष दोनों जाति प्रमाण पत्रों के लिए हैं।'}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="modal-actions-bar help-guide-actions">
+          <button
+            type="button"
+            className="btn-primary help-guide-cta"
+            onClick={onClose}
+          >
+            {isEn ? 'Got It! Let\'s Play (समझ गए!)' : 'समझ गए! खेलें'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
